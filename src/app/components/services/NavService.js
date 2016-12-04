@@ -18,11 +18,6 @@
         name: 'Profile',
         icon: 'person',
         sref: '.profile'
-      },
-      {
-        name: 'Table',
-        icon: 'view_module',
-        sref: '.table'
       }
     ];
 
