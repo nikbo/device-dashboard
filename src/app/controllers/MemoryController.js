@@ -1,15 +1,17 @@
 (function () {
     angular
         .module('app')
-        .controller('MemoryController', [
+        .controller('MemoryController', ['$interval',
             MemoryController
         ]);
 
-    function MemoryController() {
+    function MemoryController($interval) {
         var vm = this;
+        var iterator = 1;
+        var currentBattery = 100;
 
         // TODO: move data to the service
-        vm.memoryChartData = [ {key: 'memory', y: 42}, { key: 'free', y: 58} ];
+        vm.memoryChartData = [ {key: 'Stay', y: 100}, { key: 'Used', y: 0} ];
 
         vm.chartOptions = {
             chart: {
@@ -27,10 +29,16 @@
                 showLabels: false,
                 showLegend: false,
                 tooltips: false,
-                title: '42%',
+                title: '100%',
                 titleOffset: -10,
                 margin: { bottom: -80, left: -20, right: -20 }
             }
         };
+        $interval(function () {
+            currentBattery--;
+            vm.memoryChartData[0].y = currentBattery;
+            vm.memoryChartData[1].y = 100-currentBattery;
+            vm.chartOptions.chart.title = currentBattery+'%';
+        },20000)
     }
 })();

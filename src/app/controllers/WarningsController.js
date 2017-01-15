@@ -1,38 +1,43 @@
 (function () {
     angular
         .module('app')
-        .controller('WarningsController', [
+        .controller('WarningsController', ['$interval',
             WarningsController
         ]);
 
-    function WarningsController() {
+    function WarningsController($interval) {
         var vm = this;
+        var currentPoint = 1;
 
         // TODO: move data to the service
-        vm.warningsChartData = warningFunction;
-
-        function warningFunction() {
-            var sin = [];
-            for (var i = 0; i < 100; i++) {
-                sin.push({x: i, y: Math.abs(Math.cos(i/10) *0.25*i + 0.9 - 0.4*i)});
-            }
-            return [ { values: sin, color: 'rgb(0, 150, 136)', area: true } ];
-        }
+        vm.warningsChartData = [{values: [{series: 0, x: 0, y: 30}], color: 'rgb(0, 150, 136)', area: true}];
 
         vm.chartOptions = {
             chart: {
                 type: 'lineChart',
                 height: 210,
-                margin: { top: -10, left: -20, right: -20 },
-                x: function (d) { return d.x },
-                y: function (d) { return d.y },
+                margin: {top: -10, left: -20, right: -20},
+                x: function (d) {
+                    return d.x
+                },
+                y: function (d) {
+                    return d.y
+                },
                 showLabels: false,
                 showLegend: false,
-                title: 'Over 9K',
+                title: 'Height of drone',
                 showYAxis: false,
                 showXAxis: false,
-                tooltip: { contentGenerator: function (d) { return '<span class="custom-tooltip">' + Math.round(d.point.y) + '</span>' } }
+                tooltip: {
+                    contentGenerator: function (d) {
+                        return '<span class="custom-tooltip">' + Math.round(d.point.y) + '</span>'
+                    }
+                }
             }
         };
+        $interval(function () {
+            vm.warningsChartData[0].values.push({series:0, x: currentPoint, y: Math.floor(Math.random() * (70 - 50)) + 50});
+            currentPoint++;
+        },5000);
     }
 })();
