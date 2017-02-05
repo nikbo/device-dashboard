@@ -37,7 +37,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
         data: {
           title: 'Table'
         }
-      });
+      })
+        .state('home.heights', {
+            url: '/heights',
+            templateUrl: 'app/views/heights.html',
+            data: {
+                title: 'Table'
+            }
+        }) ;
 
     $urlRouterProvider.otherwise('/dashboard');
 

@@ -1,76 +1,116 @@
-(function(){
+(function () {
 
-  angular
-       .module('app')
-       .controller('MainController', [
-          'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast',
-          MainController
-       ]);
+    angular
+        .module('app')
+        .controller('MainController', [
+            '$scope', 'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast',
+            MainController
+        ]);
 
-  function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast) {
-    var vm = this;
+    function MainController($scope, navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast) {
+        var vm = this;
+        $scope.options = {scrollwheel: false};
+        $scope.map = {
+            center: {latitude: 53.917638, longitude: 27.595057},
+            zoom: 17,
+            bounds: {
+                northeast: {
+                    latitude: 53.917938,
+                    longitude: 27.595957
+                },
+                southwest: {
+                    latitude: 53.917038,
+                    longitude: 27.594057
+                }
+            }
+        };
+        var createRandomMarker = function(i, bounds, idKey) {
+            var lat_min = bounds.southwest.latitude,
+                lat_range = bounds.northeast.latitude - lat_min,
+                lng_min = bounds.southwest.longitude,
+                lng_range = bounds.northeast.longitude - lng_min;
 
-    vm.menuItems = [ ];
-    vm.selectItem = selectItem;
-    vm.toggleItemsList = toggleItemsList;
-    vm.showActions = showActions;
-    vm.title = $state.current.data.title;
-    vm.showSimpleToast = showSimpleToast;
-    vm.toggleRightSidebar = toggleRightSidebar;
+            if (idKey == null) {
+                idKey = "id";
+            }
 
-    navService
-      .loadAllItems()
-      .then(function(menuItems) {
-        vm.menuItems = [].concat(menuItems);
-      });
+            var latitude = lat_min + (Math.random() * lat_range);
+            var longitude = lng_min + (Math.random() * lng_range);
+            var ret = {
+                latitude: latitude,
+                longitude: longitude,
+                title: 'm' + i
+            };
+            ret[idKey] = i;
+            return ret;
+        };
+        var markers = [];
+        for (var i = 0; i < 50; i++) {
+            markers.push(createRandomMarker(i, $scope.map.bounds))
+        }
+        $scope.randomMarkers = markers;
 
-    function toggleRightSidebar() {
-        $mdSidenav('right').toggle();
-    }
+        vm.menuItems = [];
+        vm.selectItem = selectItem;
+        vm.toggleItemsList = toggleItemsList;
+        vm.showActions = showActions;
+        vm.title = $state.current.data.title;
+        vm.showSimpleToast = showSimpleToast;
+        vm.toggleRightSidebar = toggleRightSidebar;
 
-    function toggleItemsList() {
-      var pending = $mdBottomSheet.hide() || $q.when(true);
+        navService
+            .loadAllItems()
+            .then(function (menuItems) {
+                vm.menuItems = [].concat(menuItems);
+            });
 
-      pending.then(function(){
-        $mdSidenav('left').toggle();
-      });
-    }
+        function toggleRightSidebar() {
+            $mdSidenav('right').toggle();
+        }
 
-    function selectItem (item) {
-      vm.title = item.name;
-      vm.toggleItemsList();
-      vm.showSimpleToast(vm.title);
-    }
+        function toggleItemsList() {
+            var pending = $mdBottomSheet.hide() || $q.when(true);
 
-    function showActions($event) {
-        $mdBottomSheet.show({
-          parent: angular.element(document.getElementById('content')),
-          templateUrl: 'app/views/partials/bottomSheet.html',
-          controller: [ '$mdBottomSheet', SheetController],
-          controllerAs: "vm",
-          bindToController : true,
-          targetEvent: $event
-        }).then(function(clickedItem) {
-          clickedItem && $log.debug( clickedItem.name + ' clicked!');
-        });
+            pending.then(function () {
+                $mdSidenav('left').toggle();
+            });
+        }
 
-        function SheetController( $mdBottomSheet ) {
-          var vm = this;
+        function selectItem(item) {
+            vm.title = item.name;
+            vm.toggleItemsList();
+            vm.showSimpleToast(vm.title);
+        }
 
-          vm.performAction = function(action) {
-            $mdBottomSheet.hide(action);
-          };
+        function showActions($event) {
+            $mdBottomSheet.show({
+                parent: angular.element(document.getElementById('content')),
+                templateUrl: 'app/views/partials/bottomSheet.html',
+                controller: ['$mdBottomSheet', SheetController],
+                controllerAs: "vm",
+                bindToController: true,
+                targetEvent: $event
+            }).then(function (clickedItem) {
+                clickedItem && $log.debug(clickedItem.name + ' clicked!');
+            });
+
+            function SheetController($mdBottomSheet) {
+                var vm = this;
+
+                vm.performAction = function (action) {
+                    $mdBottomSheet.hide(action);
+                };
+            }
+        }
+
+        function showSimpleToast(title) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .content(title)
+                    .hideDelay(2000)
+                    .position('bottom right')
+            );
         }
     }
-
-    function showSimpleToast(title) {
-      $mdToast.show(
-        $mdToast.simple()
-          .content(title)
-          .hideDelay(2000)
-          .position('bottom right')
-      );
-    }
-  }
 
 })();
