@@ -6,7 +6,7 @@ $warning-color: #E75753;
 
 
 // VARIABLES
-$left-sidenav-width: 110px;
+$left-sidenav-width: 170px;
 $widget-height: 310px;
 $font-weight-bold: 600;
 $font-size-large: 22px;
@@ -172,6 +172,21 @@ md-backdrop.md-sidenav-backdrop {
   background-color: rgb(255, 236, 201)
 }
 
-.layout-align-end-center {
-  display: none;
+.angular-google-map-container {
+  height: 300px;
+}
+
+.heights {
+  display: flex;
+  flex-wrap: wrap;
+  section {
+    background: #fff;
+    width: 31%;
+    flex: none;
+    margin: 1%;
+    height: auto;
+  }
+}
+.dashboard-heights {
+  cursor: pointer;
 }

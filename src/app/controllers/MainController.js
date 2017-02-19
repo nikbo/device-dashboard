@@ -45,7 +45,7 @@
             return ret;
         };
         var markers = [];
-        for (var i = 0; i < 50; i++) {
+        for (var i = 0; i < 22; i++) {
             markers.push(createRandomMarker(i, $scope.map.bounds))
         }
         $scope.randomMarkers = markers;

@@ -1,7 +1,7 @@
 <div layout-gt-md="row">
     <panel-widget flex title="Drones in use" template="app/views/partials/visitors.html"
                   class="fixed-height-widget"></panel-widget>
-    <panel-widget ui-sref="home.heights" flex title="Height" template="app/views/partials/warnings.html"
+    <panel-widget class="dashboard-heights" ui-sref="home.heights" flex title="Height" template="app/views/partials/warnings.html"
                   class="fixed-height-widget"></panel-widget>
     <panel-widget flex title="Batteries" template="app/views/partials/memory.html"
                   class="fixed-height-widget"></panel-widget>
@@ -23,6 +23,3 @@
 <div layout-gt-md="row">
     <panel-widget flex title="Performance" template="app/views/partials/performance.html" options="true"></panel-widget>
 </div>
-<style>
-    .angular-google-map-container { height: 300px; }
-</style>
