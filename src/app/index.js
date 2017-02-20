@@ -42,9 +42,23 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
             url: '/heights',
             templateUrl: 'app/views/heights.html',
             data: {
-                title: 'Table'
+                title: 'Heights'
             }
-        }) ;
+        })
+        .state('home.batteries', {
+            url: '/batteries',
+            templateUrl: 'app/views/batteries.html',
+            data: {
+                title: 'Batteries'
+            }
+        })
+        .state('home.drones', {
+            url: '/drones',
+            templateUrl: 'app/views/drones.html',
+            data: {
+                title: 'Drones'
+            }
+        });
 
     $urlRouterProvider.otherwise('/dashboard');
 

@@ -10,7 +10,7 @@
         var currentPoint = 1;
 
         // TODO: move data to the service
-        vm.warningsChartData = [{values: [{series: 0, x: 0, y: 30}], color: 'rgb(0, 150, 136)', area: true}];
+        vm.warningsChartData = [{values: [{series: 0, x: 0, y: 30}], color: '#00a4e4', area: true}];
 
         vm.chartOptions = {
             chart: {

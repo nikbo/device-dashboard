@@ -176,7 +176,7 @@ md-backdrop.md-sidenav-backdrop {
   height: 300px;
 }
 
-.heights {
+.heights, .batteries {
   display: flex;
   flex-wrap: wrap;
   section {
@@ -187,6 +187,6 @@ md-backdrop.md-sidenav-backdrop {
     height: auto;
   }
 }
-.dashboard-heights {
+.dashboard-heights, .dashboard-batteries {
   cursor: pointer;
 }
