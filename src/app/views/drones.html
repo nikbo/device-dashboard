@@ -1,4 +1,4 @@
-<div class="drones">
+<div ng-controller="DronesListController as vm" class="drones">
     <div class="table-responsive-vertical md-whiteframe-z1">
         <table id="table" class="table table-hover table-bordered">
             <thead>
@@ -10,13 +10,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td data-title="ID"></td>
-                <td data-title="Issue"></td>
-                <td data-title="Status"></td>
+            <tr ng-repeat="drone in vm.drones">
+                <td data-title="ID">{{drone.id}}</td>
+                <td data-title="Model">{{drone.name}}</td>
+                <td ng-class="{lost: !drone.status}" data-title="Status">{{drone.status ? 'Connection Established' : 'Connection Lost'}}</td>
                 <td data-title="Progress">
                     <md-progress-linear class="table-progress "
                                         md-mode="determinate"
+                                        value="{{drone.battery}}"
+                                        ng-show="drone.status"
                                         >
                     </md-progress-linear>
                 </td>
