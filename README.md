@@ -29,7 +29,7 @@ Run development web-server:
 ## Project structure and credits
 
 Developed by Nikita Bobrik [Linkedin](http://https://www.linkedin.com/in/%D0%BD%D0%B8%D0%BA%D0%B8%D1%82%D0%B0-%D0%B1%D0%BE%D0%B1%D1%80%D0%B8%D0%BA-178183108?trk=nav_responsive_tab_profile),
-Design by [flatlogic.com](http://flatlogic.com/)
+Based on [flatlogic.com](http://flatlogic.com/) [project](https://github.com/flatlogic/angular-material-dashboard)
 
 ## Deploy to Github pages  
   
