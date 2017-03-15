@@ -1,10 +1,10 @@
 <div layout-gt-md="row">
     <panel-widget ui-sref="home.drones" flex title="Drones in use" template="app/views/partials/visitors.html"
-                  class="fixed-height-widget"></panel-widget>
-    <panel-widget class="dashboard-heights" ui-sref="home.heights" flex title="Height" template="app/views/partials/warnings.html"
-                  class="fixed-height-widget"></panel-widget>
-    <panel-widget class="dashboard-batteries" flex title="Batteries" ui-sref="home.batteries" template="app/views/partials/memory.html"
-                  class="fixed-height-widget"></panel-widget>
+                  class="dashboard-drones fixed-height-widget"></panel-widget>
+    <panel-widget ui-sref="home.heights" flex title="Height" template="app/views/partials/warnings.html"
+                  class="dashboard-heights fixed-height-widget"></panel-widget>
+    <panel-widget flex title="Batteries" ui-sref="home.batteries" template="app/views/partials/memory.html"
+                  class="dashboard-batteries fixed-height-widget"></panel-widget>
 </div>
 <div layout-gt-md="row">
     <ui-gmap-google-map style="width: 100%;" options="options" center='map.center' zoom='map.zoom'>

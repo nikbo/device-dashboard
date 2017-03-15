@@ -187,10 +187,14 @@ md-backdrop.md-sidenav-backdrop {
     height: auto;
   }
 }
-.dashboard-heights, .dashboard-batteries {
+.dashboard-heights, .dashboard-batteries, .dashboard-drones {
   cursor: pointer;
 }
 
 .drones .lost {
   color: red;
+}
+
+.widget-progress {
+  padding-bottom: 10px;
 }

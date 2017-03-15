@@ -11,16 +11,16 @@
         var vm = this;
         $scope.options = {scrollwheel: false};
         $scope.map = {
-            center: {latitude: 53.917638, longitude: 27.595057},
+            center: {latitude: 53.9144072, longitude: 27.5985736},
             zoom: 17,
             bounds: {
                 northeast: {
-                    latitude: 53.917938,
-                    longitude: 27.595957
+                    latitude: 53.9148172,
+                    longitude: 27.5986736
                 },
                 southwest: {
-                    latitude: 53.917038,
-                    longitude: 27.594057
+                    latitude: 53.9143072,
+                    longitude: 27.5980736
                 }
             }
         };
